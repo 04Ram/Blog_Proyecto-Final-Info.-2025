@@ -1,0 +1,52 @@
+# ======================
+# Python
+# ======================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ======================
+# Django
+# ======================
+*.log
+local_settings.py
+db.sqlite3
+media/
+
+# ======================
+# Virtual Environments
+# ======================
+venv/
+env/
+ENV/
+.venv/
+
+# ======================
+# Environment variables
+# ======================
+.env
+
+# ======================
+# Static files (optional)
+# ======================
+staticfiles/
+
+# ======================
+# IDEs / Editors
+# ======================
+.vscode/
+.idea/
+*.swp
+
+# ======================
+# OS files
+# ======================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ======================
+# Git
+# ======================
+.gitmodules
