@@ -1,0 +1,12 @@
+{% extends "app_noticias/base.html" %}
+
+{% block contenido %}
+<h3>¿Eliminar categoría?</h3>
+<p>{{ categoria.nombre }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger">Confirmar</button>
+    <a href="{% url 'listar_categorias' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

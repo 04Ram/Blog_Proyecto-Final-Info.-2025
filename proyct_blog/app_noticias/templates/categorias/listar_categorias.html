@@ -1,0 +1,30 @@
+{% extends "app_noticias/base.html" %}
+
+{% block contenido %}
+<h2 class="mb-3">Categorías disponibles</h2>
+
+{% if es_colaborador %}
+    <a href="{% url 'crear_categoria' %}" class="btn btn-success mb-3">
+        Crear categoría
+    </a>
+{% endif %}
+
+<ul class="list-group">
+    {% for categoria in categorias %}
+        <li class="list-group-item d-flex justify-content-between">
+            <a href="{% url 'noticias_por_categoria' categoria.id %}">
+                {{ categoria.nombre }}
+            </a>
+
+            {% if es_colaborador %}
+                <span>
+                    <a href="{% url 'editar_categoria' categoria.id %}">Editar</a> |
+                    <a href="{% url 'eliminar_categoria' categoria.id %}">Eliminar</a>
+                </span>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li class="list-group-item">No hay categorías cargadas</li>
+    {% endfor %}
+</ul>
+{% endblock contenido %}

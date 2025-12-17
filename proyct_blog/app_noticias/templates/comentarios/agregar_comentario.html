@@ -1,0 +1,18 @@
+{% extends "app_noticias/base.html" %}
+
+{% block contenido %}
+<h3>Agregar comentario</h3>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-success">
+        Publicar comentario
+    </button>
+
+    <a href="{% url 'detalle_noticia' noticia.id %}" class="btn btn-secondary">
+        Cancelar
+    </a>
+</form>
+{% endblock contenido %}

@@ -1,0 +1,11 @@
+{% extends "app_noticias/base.html" %}
+
+{% block contenido %}
+<h3>¿Eliminar noticia?</h3>
+<p>{{ noticia.titulo }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger">Eliminar</button>
+</form>
+{% endblock %}

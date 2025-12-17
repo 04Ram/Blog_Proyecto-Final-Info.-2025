@@ -1,0 +1,21 @@
+{% extends "app_noticias/base.html" %}
+
+{% block contenido %}
+<h2>Noticias de "{{ categoria.nombre }}"</h2>
+
+{% for noticia in noticias %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ noticia.titulo }}</h5>
+            <p class="card-text">
+                {{ noticia.contenido|truncatechars:150 }}
+            </p>
+            <a href="{% url 'detalle_noticia' noticia.id %}" class="btn btn-sm btn-primary">
+                Ver noticia
+            </a>
+        </div>
+    </div>
+{% empty %}
+    <p>No hay noticias en esta categoría.</p>
+{% endfor %}
+{% endblock contenido %}

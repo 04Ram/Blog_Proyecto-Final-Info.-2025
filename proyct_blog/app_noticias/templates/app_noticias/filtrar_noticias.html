@@ -1,0 +1,88 @@
+{% extends "app_noticias/base.html" %}
+    {% block contenido %}
+
+
+
+        <form method="get" class="row g-3 mb-4">
+
+            <!-- FILTRO CATEGORÍA -->
+            <div class="col-md-4 mt-5 col-lg-4 mx-5">
+                <div class="">
+                    <select name="categoria" class="form-select">
+                        <option value="">Todas las categorías</option>
+                        {% for categoria in categorias %}
+                            <option value="{{ categoria.id }}"
+                                {% if categoria.id|stringformat:"s" == categoria_seleccionada %}
+                                    selected
+                                {% endif %}
+                            >
+                                {{ categoria.nombre }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- ORDEN -->
+            <div class="col-md-4 mt-5 mx-1 col-lg-4">
+                <select name="orden" class="form-select">
+                    <option value="">Ordenar por...</option>
+                    <option value="fecha_desc" {% if orden_actual == "fecha_desc" %}selected{% endif %}>
+                        Más recientes
+                    </option>
+                    <option value="fecha_asc" {% if orden_actual == "fecha_asc" %}selected{% endif %}>
+                        Más antiguas
+                    </option>
+                    <option value="az" {% if orden_actual == "az" %}selected{% endif %}>
+                        Título A–Z
+                    </option>
+                    <option value="za" {% if orden_actual == "za" %}selected{% endif %}>
+                        Título Z–A
+                    </option>
+                </select>
+            </div>
+
+            <!-- BOTÓN -->
+            <div class="col-md-4 mt-5 mx-5 col-lg-2 ">
+                <button type="submit" class="btn btn-primary w-100">
+                    Filtrar
+                </button>
+            </div>
+
+        </form>
+        {% for noticia in noticias %}
+            <div class="card mb-3 mx-3 card-shadow">
+                <div class="card-body">
+                    <h5>{{ noticia.titulo }}</h5>
+                    <p>{{ noticia.contenido|truncatechars:150 }}</p>
+
+                    <small class="text-muted">
+                        {{ noticia.categoria }} | {{ noticia.fecha }}
+                    </small>
+
+                    <br>
+                    <a href="{% url 'detalle_noticia' noticia.id %}" class="btn btn-sm btn-outline-primary mt-1">
+                        Ver más
+                    </a>
+                </div>
+            </div>
+        {% empty %}
+            <p>No hay noticias para mostrar.</p>
+        {% endfor %}
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link">Anterior</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Siguiente...</a>
+                </li>
+            </ul>
+        </nav>
+
+
+    {% endblock contenido %}

@@ -1,0 +1,28 @@
+{% extends "app_noticias/base.html" %}
+
+{% block contenido %}
+
+    <p> ¿Quieres eliminar la noticia?</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <button type="submit"> Confirmar.  </button>
+
+
+    </form>
+
+
+{% endblock contenido %}
+
+
+
+
+
+
+
+
+
+
+
+

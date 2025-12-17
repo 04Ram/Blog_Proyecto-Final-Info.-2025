@@ -1,0 +1,36 @@
+{% extends "app_noticias/base.html" %}
+{% load static %}
+    {% block contenido %}
+    <div class="container my-4 mx-5">
+            <h1 class="mb-4 border-bottom pb">{{ titulo_pagina }}</h1>    
+
+        <li>
+            <a class="nav-link badge bg-dark fs-6 fst-italic mb-2" href="{% url 'filtrar_noticias' %}"> Filtrar Noticias</a>
+        </li>
+
+        <div class="row mt-3 mx-5">
+            {%  for noticia in noticias %}
+            <div class="col-6 mb-1 mb-sm-0">
+                <div class="card" style="max-width: 500px;">
+                    <img src="{{ noticia.imagen.url }}" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <span class="badge bg-primary mb-1">categoria: {{  noticia.categoria   }}</span>
+                    
+                        <h5 class="card-title fw-bold mb-1">titulo: {{  noticia.titulo   }}</h5>  <br>
+                        
+                        <h6 class="card-subtitle mb-0 text-mutted">autor: {{  noticia.autor   }}</h6>  <br>
+                        <p class="card-text mb-1">{{noticia.contenido|truncatechars:60}}</p>
+
+                        <a href="{% url 'detalle_noticia' noticia.pk %}"> Leer más... </a>
+                        
+                        <hr>
+                    </div>
+                </div>   
+            </div>
+
+            {%  endfor %}
+        </div>
+        {% endblock contenido %}
+        
+    </div>
+
